@@ -1,0 +1,14 @@
+{
+  "name": "hospita_api",
+  "version": "1.0.0",
+  "description": "HW Course work 1",
+  "main": "server.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "author": "Group Work",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
