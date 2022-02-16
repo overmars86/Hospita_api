@@ -14,7 +14,10 @@ exports.getVisitLogs = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`The user with ID ${req.user.id} can not access`, 400));
     }
     
-    const visitlog = await VisitLog.find();
+    const visitlog = await VisitLog.find().populate({
+        path: 'patient',
+        select: 'familyname age phone'
+    });
     
     res.status(200).json({success: true, count: visitlog.length, data: visitlog});
     
@@ -28,7 +31,7 @@ exports.getVisitLogs = asyncHandler(async (req, res, next) => {
 exports.getVisitLog = asyncHandler(async (req, res, next) => {
     const visitlog = await VisitLog.findById(req.params.id).populate({
         path: 'patient',
-        select: 'name phone'
+        select: 'familyname age phone'
     });
     if(!VisitLog) {
         return next(
