@@ -9,9 +9,9 @@ const cookieParser = require('cookie-parser');
 
 // Route files
 const patient = require('./routes/patient');
-// const visitlog = require('./routes/visitlog');
+const visitlog = require('./routes/visitlog');
 const auth = require('./routes/auth');
-//const Patients = require('./models/Patients');
+const Patients = require('./models/Patients');
 
 // Load env vars
 dotenv.config({path: './config/config.env'});
@@ -40,7 +40,7 @@ app.use(fileupload());
 
 // Mount routers
 app.use('/api/v1/patient', patient);
-// app.use('/api/v1/visitlog', visitlog);
+app.use('/api/v1/visitlog', visitlog);
 app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);

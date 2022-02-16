@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const PatientSchema = new mongoose.Schema({
-    firstName: {
+    firstname: {
         type: String,
         trim: true,
         required: [true, 'Please add a name']
     },
-    familyName: {
+    familyname: {
         type: String,
         trim: true,
         required: [true, 'Please add a description']
@@ -14,7 +14,8 @@ const PatientSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: true,
-        minlength: 10
+        minlength: 10,
+        unique: true
     },
     education: {
         type: String,

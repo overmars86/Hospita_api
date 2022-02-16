@@ -5,44 +5,42 @@ const asyncHandler = require('../middleware/async');
 const { json } = require('express/lib/response');
 
 // @desc    Get all patient logs
-// @route   Get /api/v1/patient/:patientId/visitlog
+// @route   Get /api/v1/visitlog
 // @access  Private
 
-exports.getVisitLog = asyncHandler(async (req, res, next) => {
-    if(req.params.patientId) {
-        const visitlog = await VisitLog.find({patient: req.params.patientId});
-        return res.status(200).json({
-            success: true,
-            count: visitlog.length,
-            data: visitlog});
-    } else {
-       res.status(200).json(res.advancedResults);
+exports.getVisitLogs = asyncHandler(async (req, res, next) => {
+    if(req.user.role !== 'clerk') {
+        return next(new ErrorResponse(`The user with ID ${req.user.id} can not access`, 400));
     }
+    
+    const visitlog = await VisitLog.find();
+    
+    res.status(200).json({success: true, count: visitlog.length, data: visitlog});
+    
 });
 
 
-// @desc    Get single course
-// @route   Get /api/v1/courses/:id
+// @desc    Get single vistlog
+// @route   Get /api/v1/visitlog/:id
 // @access  Public
 
-// exports.getCourse = asyncHandler(async (req, res, next) => {
-//     const course = await Course.findById(req.params.id).populate({
-//         path: 'bootcamp',
-//         select: 'name description'
-//     });
-//     if(!Course) {
-//         return next(
-//             new ErrorResponse(`Can not find this Course id no. ${req.params.id}`, 404)
-//         );
-//     }
+exports.getVisitLog = asyncHandler(async (req, res, next) => {
+    const visitlog = await VisitLog.findById(req.params.id).populate({
+        path: 'patient',
+        select: 'name phone'
+    });
+    if(!VisitLog) {
+        return next(
+            new ErrorResponse(`Can not find this Visit Log id no. ${req.params.id}`, 404)
+        );
+    }
 
-//     res.status(200).json({
-//         success: true,
-//         count: course.length,
-//         data: course
+    res.status(200).json({
+        success: true,
+        data: visitlog
 
-//     });
-// });
+    });
+});
 
 
 // // @desc    Add course
