@@ -17,6 +17,10 @@ const PatientSchema = new mongoose.Schema({
         minlength: 10,
         unique: true
     },
+    age: {
+        type: Number,
+        required: true
+    },
     education: {
         type: String,
         required: false

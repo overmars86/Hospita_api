@@ -3,6 +3,7 @@ const ErrorResponse = require('../Utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 //const Bootcamp = require('../models/Bootcamps');
 const { json } = require('express/lib/response');
+const Patients = require('../models/Patients');
 
 // @desc    Get all patient logs
 // @route   Get /api/v1/visitlog
@@ -43,34 +44,34 @@ exports.getVisitLog = asyncHandler(async (req, res, next) => {
 });
 
 
-// // @desc    Add course
-// // @route   Post /api/v1/bootcamps/:bootcampsId/courses
-// // @access  Private
+// @desc    Add visit log
+// @route   Post /api/v1/patient/:patientId/visitlog
+// @access  Private
 
-// exports.addCourse = asyncHandler(async (req, res, next) => {
-//     req.body.bootcamp = req.params.bootcampId;
-//     req.body.user = req.user.id;
+exports.addVisitLog = asyncHandler(async (req, res, next) => {
+    req.body.patient = req.params.patientId;
+    req.body.user = req.user.id;
 
-//     const bootcamp = await Bootcamp.findById(req.params.bootcampId);
+    const patient = await Patients.findById(req.params.patientId);
 
-//     if(!bootcamp) {
-//         return next(
-//             new ErrorResponse(`No bootcamp with id no. ${req.params.bootcampId}`, 404)
-//         );
-//     }
-//     // Make sure user is bootcamp owner
-//     if(bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
-//         return next(new ErrorResponse(`User ${req.user.id} is not authorized to update
-//         this course`, 401));
+    if(!patient) {
+        return next(
+            new ErrorResponse(`No patient with id no. ${req.params.patientId}`, 404)
+        );
+    }
 
-//     }
-//     const course = await Course.create(req.body);
-//     res.status(201).json({
-//         success: true,
-//         data: course
+   // If the user is not a clerk
+   if(req.user.role !== 'clerk') {
+    return next(new ErrorResponse(`The user with ID ${req.user.id} can not access`, 400));
+}
 
-//     });
-// });
+    const visitlog = await VisitLog.create(req.body);
+    res.status(201).json({
+        success: true,
+        data: visitlog
+
+    });
+});
 
 
 // // @desc    Update course

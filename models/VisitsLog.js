@@ -4,15 +4,18 @@ const VisitSchema = new mongoose.Schema(
     {
       temp: {
         type: String,
-        maxlength: [50, 'Name can not be more than 50 characters']
+        maxlength: [50, 'temp can not be more than 50 characters'],
+        unique: false
       },
       weight: {
         type: Number,
+        unique: false
       },
       description: {
         type: String,
-        required: [true, 'Please add a description'],
-        maxlength: [500, 'Description can not be more than 500 characters']
+        required: [false, 'Please add a description'],
+        maxlength: [500, 'Description can not be more than 500 characters'],
+        unique: false
       },
       description_2: {
         type: String,
@@ -25,11 +28,12 @@ const VisitSchema = new mongoose.Schema(
       ward: {
         type: [String],
         enum: ['ward A','ward B','ward C','NA'],
-        default: 'NA'
+        unique: false
       },
       doctorname: {
         type: [String],
-        enum: ['doctor A', 'doctor B', 'doctor C']
+        enum: ['doctor A', 'doctor B', 'doctor C'],
+        unique: false
       },
       doctoropinion: {
         type: String,
@@ -37,7 +41,8 @@ const VisitSchema = new mongoose.Schema(
       },
       photo: {
         type: String,
-        default: 'no-photo.jpg'
+        default: 'no-photo.jpg',
+        unique: false
       },
       createdAt: {
         type: Date,
@@ -53,21 +58,17 @@ const VisitSchema = new mongoose.Schema(
         ref: 'Patient',
         required: true
       }
-    },
-    {
-      toJSON: { virtuals: true },
-      toObject: { virtuals: true }
     }
   );
 
 // Reverse populate
-VisitSchema.virtual(
-  'visitlog', {
-    ref: 'visitlog',
-    localField: '_id',
-    foreignField: 'patient',
-    justOne: false
-  }
-);
+// VisitSchema.virtual(
+//   'visitlog', {
+//     ref: 'visitlog',
+//     localField: '_id',
+//     foreignField: 'patient',
+//     justOne: false
+//   }
+// );
 
 module.exports = mongoose.model('Visitlog', VisitSchema);
