@@ -26,7 +26,10 @@ exports.getPatients = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.getPatient = asyncHandler(async (req, res, next) => {
 
-        const patient = await Patients.findById(req.params.id);
+        const patient = await Patients.findById(req.params.id).populate({
+            path: 'Visitlog',
+            select: 'createdAt temp weight description description_2 doctorname addmission ward'
+        });
         if(!patient) {
             return next(
                 new ErrorResponse( `No Patient found with id no. ${req.params.id}`, 404));

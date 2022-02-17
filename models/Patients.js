@@ -33,8 +33,22 @@ const PatientSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: true
-}});
+    }
+    },
+    {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true }
+      }
+);
 
-
+// Reverse populate
+PatientSchema.virtual(
+    'Visitlog', {
+      ref: 'Visitlog',
+      localField: '_id',
+      foreignField: 'patient',
+      justOne: false
+    }
+  );
 
 module.exports = mongoose.model('Patient', PatientSchema);

@@ -17,9 +17,14 @@ const VisitSchema = new mongoose.Schema(
         maxlength: [500, 'Description can not be more than 500 characters'],
         unique: false
       },
-      description_2: {
+      complaints: {
         type: String,
-        maxlength: [500, 'Description can not be more than 500 characters']
+        maxlength: [500, 'complaints can not be more than 500 characters']
+      },
+      known_diseases: {
+        type: String,
+        maxlength: [500, 'diseases can not be more than 500 characters']
+
       },
       addmission: {
         type: Boolean,
@@ -37,7 +42,7 @@ const VisitSchema = new mongoose.Schema(
       },
       doctoropinion: {
         type: String,
-        maxlength: [500, 'Description can not be more than 500 characters']
+        maxlength: [500, 'opinion can not be more than 500 characters']
       },
       photo: {
         type: String,
@@ -59,16 +64,10 @@ const VisitSchema = new mongoose.Schema(
         required: true
       }
     }
+    
+    
   );
 
-// Reverse populate
-// VisitSchema.virtual(
-//   'visitlog', {
-//     ref: 'visitlog',
-//     localField: '_id',
-//     foreignField: 'patient',
-//     justOne: false
-//   }
-// );
+
 
 module.exports = mongoose.model('Visitlog', VisitSchema);

@@ -77,35 +77,35 @@ exports.addVisitLog = asyncHandler(async (req, res, next) => {
 });
 
 
-// // @desc    Update course
-// // @route   Put /api/v1/courses/:id
-// // @access  Private
+// @desc    Update visitlog
+// @route   Post /api/v1/visitlog/:id
+// @access  Private
 
-// exports.updateCourse = asyncHandler(async (req, res, next) => {
-//     let course = await Course.findById(req.params.id);
+exports.updateVisitLog = asyncHandler(async (req, res, next) => {
+    let visitlog = await VisitLog.findById(req.params.id);
 
-//     if(!course) {
-//         return next(
-//             new ErrorResponse(`No course with id no. ${req.params.id}`, 404)
-//         );
-//     }
-//      // Make sure user is bootcamp owner
-//      if(course.user.toString() !== req.user.id && req.user.role !== 'admin') {
-//         return next(new ErrorResponse(`User ${req.user.id} is not authorized to update
-//         this course`, 401));
+    if(!visitlog) {
+        return next(
+            new ErrorResponse(`No visit with id no. ${req.params.id}`, 404)
+        );
+    }
+     // Make sure user is not clerk & not authority
+     if(req.user.role === 'clerk' || req.user.role ==='authority') {
+        return next(new ErrorResponse(`User ${req.user.id} is not authorized to update
+        this visitlog`, 401));
 
-//     }
-//     course = await Course.updateOne(req.params.id, req.body, {
-//         new: true,
-//         runValidators: true});
+    }
+    visitlog = await VisitLog.findOneAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true});
 
-//     res.status(201).json({
-//         success: true,
-//         msg: `Course ${course.name} has been updated`,
-//         data: course
+    res.status(201).json({
+        success: true,
+        msg: `Visitlog ${visitlog.name} has been updated`,
+        data: visitlog
 
-//     });
-// });
+    });
+});
 
 
 // // @desc    Delete course
