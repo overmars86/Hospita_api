@@ -14,7 +14,6 @@ router.route('/').get(protect, getVisitLogs)
 // }), getVisitLogs)
 .post(protect,authorize('clerk'),addVisitLog);
 router.route('/:id').get(protect, getVisitLog).put(protect, updateVisitLog);
-//.delete(protect,authorize('clerk'),deleteCourse);
 
 
 module.exports = router;

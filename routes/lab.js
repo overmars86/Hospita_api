@@ -8,11 +8,6 @@ const router = express.Router({ mergeParams: true });
 
 const {protect, authorize} = require('../middleware/auth');
 
-//Include other resource routers
-const labroute = require('./lab');
-
-//Re-route into other resource routers
-router.use('/:patientId/lab', labroute);
 
 router.route('/').get(protect, getLabs)
 // get(advancedResults(VisitLog, {

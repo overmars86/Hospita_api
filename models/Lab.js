@@ -38,11 +38,6 @@ const Lab = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: true
-    },
-    visit_log: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Visitlog',
-        required: true
     }
 });
 module.exports = mongoose.model('Lab', Lab);

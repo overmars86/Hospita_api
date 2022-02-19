@@ -8,8 +8,10 @@ const {getPatients,
 
 const Patients = require('../models/Patients');
 
+
 //Include other resource routers
 const visitlogRoute = require('./visitlog');
+const labRoute = require('./lab');
 const advancedResults = require('../middleware/advance');
 
 const router = express.Router();
@@ -17,6 +19,7 @@ const {protect, authorize} = require('../middleware/auth');
 
 //Re-route into other resource routers
 router.use('/:patientId/visitlog', visitlogRoute);
+router.use('/:patientId/lab', labRoute);
 
 router.route('/').get(protect, authorize('clerk'),getPatients);
 router.route('/').get(advancedResults(Patients, 'visitlog'),getPatients)
