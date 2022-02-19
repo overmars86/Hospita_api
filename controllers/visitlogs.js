@@ -64,7 +64,7 @@ exports.addVisitLog = asyncHandler(async (req, res, next) => {
     }
 
    // If the user is not a clerk
-   if(req.user.role !== 'clerk') {
+   if(req.user.role === 'clerk') {
     return next(new ErrorResponse(`The user with ID ${req.user.id} can not access`, 400));
 }
 
@@ -95,7 +95,7 @@ exports.updateVisitLog = asyncHandler(async (req, res, next) => {
         this visitlog`, 401));
 
     }
-    visitlog = await VisitLog.findOneAndUpdate(req.params.id, req.body, {
+    visitlog = await VisitLog.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true});
 

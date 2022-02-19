@@ -9,7 +9,7 @@ const asyncHandler = require('../middleware/async');
 exports.getPatients = asyncHandler(async (req, res, next) => {
 
     // If the user is not a clerk
-    if(req.user.role !== 'clerk') {
+    if(req.user.role === 'authority') {
         return next(new ErrorResponse(`The user with ID ${req.user.id} can not access`, 400));
     }
         const patient = await Patients.find();
@@ -28,14 +28,14 @@ exports.getPatient = asyncHandler(async (req, res, next) => {
 
         const patient = await Patients.findById(req.params.id).populate({
             path: 'Visitlog',
-            select: 'createdAt temp weight description description_2 doctorname addmission ward'
+            select: 'createdAt department ward complaints addmission doctorname'
         });
         if(!patient) {
             return next(
                 new ErrorResponse( `No Patient found with id no. ${req.params.id}`, 404));
         }
         // If the user is not a clerk
-        if(req.user.role !== 'clerk') {
+        if(req.user.role === 'authority') {
             return next(new ErrorResponse(`The user with ID ${req.user.id} can not access`, 400));
     }
         res.status(200).json({

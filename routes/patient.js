@@ -18,10 +18,11 @@ const {protect, authorize} = require('../middleware/auth');
 //Re-route into other resource routers
 router.use('/:patientId/visitlog', visitlogRoute);
 
-router.route('/').get(protect, authorize('clerk'),getPatients);
+router.route('/').get(protect, authorize('doctor', 'clerk','nurse','pharma'),getPatients);
 router.route('/').get(advancedResults(Patients, 'visitlog'),getPatients)
 .post(protect,authorize('clerk'),createPatient);
 router.route('/:id').put(protect,authorize('clerk'),updatePatient)
-.delete(protect,authorize('clerk'),deletePatient).get(protect, authorize('clerk'),getPatient);
+.delete(protect,authorize('clerk'),deletePatient).get(protect, authorize(
+    'doctor', 'clerk','nurse','pharma'),getPatient);
 
 module.exports = router;

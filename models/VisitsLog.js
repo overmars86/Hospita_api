@@ -28,12 +28,20 @@ const VisitSchema = new mongoose.Schema(
       },
       addmission: {
         type: Boolean,
-        default: false
+        default: false,
+        required: true
+      },
+      department: {
+        type: [String],
+        enum: ['Medicine', 'Surgery', 'Orthopedics', 'Pediatrics', 'ENT',
+         'Ophthalmology', 'Gynecology', 'Dermatology', 'Oncology'],
+         require: true
       },
       ward: {
         type: [String],
-        enum: ['ward A','ward B','ward C','NA'],
-        unique: false
+        enum: ['ward A','ward B','ward C','ward D'],
+        unique: false,
+        required: true
       },
       doctorname: {
         type: [String],
