@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const patient = require('./routes/patient');
 const visitlog = require('./routes/visitlog');
 const auth = require('./routes/auth');
+const lab = require('./routes/lab');
 const Patients = require('./models/Patients');
 
 // Load env vars
@@ -42,6 +43,7 @@ app.use(fileupload());
 app.use('/api/v1/patient', patient);
 app.use('/api/v1/visitlog', visitlog);
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/lab', lab);
 
 app.use(errorHandler);
 

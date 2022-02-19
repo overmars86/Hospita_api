@@ -25,6 +25,39 @@ const PatientSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    Emergency_Contact_Name: {
+        type: String,
+        min: 3,
+        max: 20,
+        required: false
+    },
+    Emergency_Contact_No: {
+        type: Number,
+        required: false,
+        max: 10,
+        min: 7
+    },
+    Country: {
+        type: String,
+        default: 'United Arab Emirates',
+        required: false
+    },
+    Emirate: {
+        type: String,
+        default: 'Dubai',
+        required: false
+    },
+    Nationality: {
+        type: String,
+        required: false,
+        max: 20
+    },
+    Address: {
+        type: String,
+        required: false,
+        max: 50,
+        min: 2
+    },
     createdAt: {
         type: Date,
         default: Date.now
