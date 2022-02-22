@@ -105,35 +105,3 @@ exports.updateLab = asyncHandler(async (req, res, next) => {
 
     });
 });
-
-
-// // @desc    Delete course
-// // @route   Delete /api/v1/courses/:id
-// // @access  Private
-
-// exports.deleteCourse = asyncHandler(async (req, res, next) => {
-//     const course = await Course.findById(req.params.id, req.body, {
-//         new: true,
-//         runValidators: true
-//     });
-
-//     if(!course) {
-//         return next(
-//             new ErrorResponse(`No course with id no. ${req.params.id}`, 404)
-//         );
-//     }
-//      // Make sure user is bootcamp owner
-//      if(course.user.toString() !== req.user.id && req.user.role !== 'admin') {
-//         return next(new ErrorResponse(`User ${req.user.id} is not authorized to delete
-//         this course`, 401));
-
-//     }
-//     await course.remove();
-//     console.log(Course.name);
-//     res.status(201).json({
-//         success: true,
-//         msg: `Course ${course.name} has been deleted`,
-//         data: {}
-
-//     });
-// });
