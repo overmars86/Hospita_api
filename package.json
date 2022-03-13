@@ -4,8 +4,7 @@
   "description": "HW Course work 1",
   "main": "server.js",
   "scripts": {
-    "star": "NODE_ENV=production node server",
-    "dev": "NODE_ENV=development node server"
+    "star": "node server.js"
   },
   "author": "Group Work",
   "license": "ISC",
