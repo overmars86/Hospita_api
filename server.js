@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const fileupload = require('express-fileupload');
 const errorHandler = require('./middleware/error');
 const cookieParser = require('cookie-parser');
+const utils = require('./test/task-schema.js');
 
 // Route files
 const patient = require('./routes/patient');
@@ -44,6 +45,31 @@ app.use('/api/v1/patient', patient);
 app.use('/api/v1/visitlog', visitlog);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/lab', lab);
+app.get('/', (req, res) => {
+    res.json({status: 'Done', message: "Welcome Prof. Abrar"});
+});
+
+//Testing purpose
+const tasks = [
+    {
+        id: 1,
+        name: "test 1",
+        completed: "false"
+    },
+    {
+        id: 2,
+        name: "test 2",
+        completed: "false"
+    },
+    {
+        id: 3,
+        name: "test 3",
+        completed: "false"
+    }
+];
+app.get("/api/v1/tests", (req, res) => {
+    res.send(tasks);
+});
 
 app.use(errorHandler);
 
@@ -59,5 +85,7 @@ process.on('unhandledRejection', (err, promise) => {
     // Close server & exit process
     server.close(() => process.exit(1));
 });
+
+module.exports = server;
 
 
