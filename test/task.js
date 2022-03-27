@@ -8,7 +8,7 @@ chai.should();
 
 chai.use(chaiHttp);
 
-describe('Test API', () => {
+describe('Test APIs', () => {
     /**
      * Test the get route
      */ 
