@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "star": "node server.js",
-    "test": "mocha",
+    "test": "mocha --exit",
     "test-junit": "mocha --reporter mocha-junit-reporter",
     "dev": "node server.js"
   },
