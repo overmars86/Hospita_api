@@ -6,11 +6,7 @@
   "scripts": {
     "star": "node server.js",
     "test": "mocha --exit",
-<<<<<<< HEAD
     "test-junit": "mocha --reporter mocha-junit-reporter",
-=======
-    "test-junit": "mocha --timeout 3000--reporter mocha-junit-reporter",
->>>>>>> 75b52b9942e1c3c287179614aabb17abfe6b0f1c
     "dev": "node server.js"
   },
   "author": "Group Work",
