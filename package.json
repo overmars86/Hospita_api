@@ -31,6 +31,7 @@
     "mocha": "^9.2.2",
     "mocha-junit-reporter": "^2.0.2",
     "super": "^0.2.3",
+    "supertest": "^6.2.2",
     "test": "^0.6.0"
   }
 }
