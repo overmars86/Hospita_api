@@ -6,6 +6,7 @@
   "scripts": {
     "star": "node server.js",
     "test": "mocha",
+    "test-junit": "mocha --reporter mocha-junit-reporter",
     "dev": "node server.js"
   },
   "author": "Group Work",
@@ -22,9 +23,14 @@
     "nodemailer": "^6.7.2"
   },
   "devDependencies": {
+    "babel": "^6.23.0",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "joi": "^17.6.0",
-    "mocha": "^9.2.2"
+    "junit-reporter": "^0.0.2",
+    "mocha": "^9.2.2",
+    "mocha-junit-reporter": "^2.0.2",
+    "super": "^0.2.3",
+    "test": "^0.6.0"
   }
 }
