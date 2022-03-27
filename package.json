@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "star": "node server.js",
-    "test": "mocha --timeout 5000",
-    "test-junit": "mocha --timeout 5000--reporter mocha-junit-reporter",
+    "test": "mocha --timeout 3000",
+    "test-junit": "mocha --timeout 3000--reporter mocha-junit-reporter",
     "dev": "node server.js"
   },
   "author": "Group Work",
