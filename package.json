@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "star": "node server.js",
-    "test": "mocha --timeout 3000",
+    "test": "mocha --exit",
     "test-junit": "mocha --timeout 3000--reporter mocha-junit-reporter",
     "dev": "node server.js"
   },
