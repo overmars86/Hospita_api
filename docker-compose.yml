@@ -1,0 +1,11 @@
+version: "1"
+
+services:
+
+  redis-master:
+    image: abdelsalam86/dev-ops:latest
+    ports:
+      - "6379"
+
+    labels:
+      kompose.service.type: LoadBalancer
