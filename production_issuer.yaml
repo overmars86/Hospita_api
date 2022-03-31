@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: dev-ops-api-cw-letsencrypt-dev
+spec:
+  acme:
+    email: 
+    server: 
+    privateKeySecretRef:
+      name: dev-ops-api-cw-letsencrypt-private-key
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
