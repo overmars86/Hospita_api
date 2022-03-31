@@ -11,7 +11,7 @@ spec:
     - node-example.juffalow.com
     secretName: dev-ops-api-cw-tls
   rules:
-  - host: localhost:3500
+  - host:
     http:
       paths:
       - path: /
