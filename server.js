@@ -46,7 +46,7 @@ app.use('/api/v1/visitlog', visitlog);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/lab', lab);
 app.get('/', (req, res) => {
-    res.json({status: 'Done', message: "not Welcome Prof. Abrar"});
+    res.json({status: 'Done', message: "Big Welcome Prof. Abrar"});
 });
 
 //////////////////////////////////      Testing purpose ////////////////////////////////////
